@@ -11,6 +11,12 @@
   ],
   "plugins": [
     [
+      "react-refresh/babel",
+      {
+        "skipEnvCheck": true
+      }
+    ],
+    [
       "@babel/plugin-transform-runtime",
       {
         "corejs": {

@@ -8,14 +8,15 @@ module.exports = {
 
   output: {
     path: dir.dist,
-    filename: `js/[name]${dir.isDev ? '' : '-[hash:8]'}.js`,
+    filename: `js/[name]${dir.isDev ? '' : '-[contenthash:8]'}.js`,
     clean: true,
   },
+
   cache: {
     type: 'filesystem',
   },
   watchOptions: {
-    ignored: /node_modules/
+    ignored: /node_modules|\.babelrc/
   },
   resolve: {
     alias: {

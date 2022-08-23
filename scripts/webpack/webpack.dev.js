@@ -1,6 +1,7 @@
 const { merge } = require('webpack-merge');
 const base = require('./webpack.base');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ip = require('ip');
 const { utils } = require('./utils');
 
@@ -10,6 +11,7 @@ module.exports = merge(base, {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
   stats: 'errors-only',
+
   devServer: {
     host: '0.0.0.0',
     port: PORT,
@@ -35,6 +37,7 @@ module.exports = merge(base, {
         ],
       },
       clearConsole: true,
-    })
+    }),
+    new ReactRefreshPlugin()
   ]
 })
