@@ -2,7 +2,6 @@ import { Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs'
-import moment from 'moment';
 import classNames from 'classnames';
 import styles from './app.less';
 
@@ -120,19 +119,13 @@ function App() {
   ]
   return (
     <>
+      <input type="text" />
       <span>{dayjs(Number('1660813575068')).format('YYYY-MM-DD HH:mm:ss')}</span>
       <br />
-      <span>{moment(1660813575068).format('YYYY-MM-DD HH:mm:ss')}</span>
+      {/* <span>{moment(1660813575068).format('YYYY-MM-DD HH:mm:ss')}</span> */}
       <div className={styles.gridWrap}>
         {[0, 1, 2, 3].map((item) => (
-          <div key={item}
-            onMouseMove={() => {
-              setCurrent(item as any)
-            }}
-            onMouseOut={() => {
-              setCurrent(undefined)
-            }}
-          >
+          <div key={item}>
             {item}
           </div>
         ))}
