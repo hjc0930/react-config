@@ -10,12 +10,12 @@
     ]
   ],
   "plugins": [
-    [
-      "react-refresh/babel",
-      {
-        "skipEnvCheck": true
-      }
-    ],
+    // [
+    //   "react-refresh/babel",
+    //   {
+    //     "skipEnvCheck": true
+    //   }
+    // ],
     [
       "@babel/plugin-transform-runtime",
       {

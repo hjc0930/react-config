@@ -30,6 +30,19 @@ module.exports = merge(base, {
     concatenateModules: false,
     usedExports: false,
   },
+  module: {
+    rules: [
+      {
+        test: /\.(j|t)sx?$/i,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          plugins: ["react-refresh/babel"]
+        },
+      },
+    ]
+  },
   plugins: [
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {

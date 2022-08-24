@@ -3,14 +3,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = [
   {
-    test: /\.(j|t)sx?$/i,
-    exclude: /node_modules/,
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-    },
-  },
-  {
     test: /\.(png|jpe?g|gif|svg)$/i,
     type: 'asset',
     generator: {

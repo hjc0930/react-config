@@ -6,7 +6,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(base, {
   mode: 'production',
-  devtool: 'source-map',
+  devtool: false,
+
   stats: {
     assets: true,
     assetsSort: '!size',
@@ -22,12 +23,11 @@ module.exports = merge(base, {
         exclude: /node_modules/,
         extractComments: false,//不将注释提取到单独的文件中
         terserOptions: {
-          compress: { pure_funcs: ['console.log'] },
+          compress: { pure_funcs: ['console.log'] }, // 生产去除console.log
         }
       }),
       new CssMinimizerPlugin()
     ],
-    splitChunks: {}
   },
   performance: {
     // 设置所有产物体积阈值
@@ -42,6 +42,18 @@ module.exports = merge(base, {
     },
   },
 
+  module: {
+    rules: [
+      {
+        test: /\.(j|t)sx?$/i,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+        },
+      },
+    ]
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/[name]-[contenthash:8].css',

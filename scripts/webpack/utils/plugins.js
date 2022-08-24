@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { ProgressPlugin } = require("webpack")
 const path = require('path');
-const { root, isDev } = require('./dir');
+const { root, isDev, public, dist } = require('./dir');
 
 module.exports = [
   new HtmlWebpackPlugin({
@@ -22,6 +23,20 @@ module.exports = [
       minifyURLs: true,
       useShortDoctype: true,
     }
+  }),
+  new CopyWebpackPlugin({
+    patterns: [
+      {
+        from: public,
+        to: dist,
+        toType: 'dir',
+        globOptions: {
+          dot: true,
+          gitignore: true,
+          ignore: ["**/*.html"],
+        },
+      }
+    ]
   }),
   new ProgressPlugin(),
 ]
