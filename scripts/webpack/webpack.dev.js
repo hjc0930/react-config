@@ -5,7 +5,7 @@ const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ip = require('ip');
 const { utils } = require('./utils');
 
-const PORT = 3000;
+const PORT = 8100;
 
 module.exports = merge(base, {
   mode: 'development',

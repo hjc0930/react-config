@@ -33,6 +33,14 @@ module.exports = [
   },
   {
     test: /\.less$/i,
+    exclude: /\.module\.less$/i,
+    use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+      'css-loader',
+      'less-loader'
+    ]
+  },
+  {
+    test: /\.module\.less$/i,
     use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, {
       loader: 'css-loader',
       options: {
@@ -44,6 +52,14 @@ module.exports = [
   },
   {
     test: /\.s(a|c)ss$/i,
+    exclude: /\.module\.s(a|c)ss$/i,
+    use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+      'css-loader',
+      'sass-loader'
+    ]
+  },
+  {
+    test: /\.module\.s(a|c)ss$/i,
     use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, {
       loader: 'css-loader',
       options: {
@@ -52,5 +68,5 @@ module.exports = [
         }
       }
     }, 'sass-loader']
-  }
+  },
 ]
