@@ -1,12 +1,12 @@
-import { createRoot } from 'react-dom/client';
-import App from './App';
-import store from './stores';
-import { fetchPosts } from './stores/posts';
-import { Provider } from 'react-redux'
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import store from "./stores";
+import { fetchPosts } from "./stores/posts";
+import { Provider } from "react-redux";
 
-store.dispatch(fetchPosts())
+store.dispatch(fetchPosts());
 
-const root = document.getElementById('root')!;
+const root = document.getElementById("root")!;
 const app = createRoot(root);
 
 app.render(
