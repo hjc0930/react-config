@@ -1,12 +1,25 @@
 import React from 'react';
-import styles from './home.module.less';
+import { useAppDispatch, useAppSelector } from '@/stores/hooks';
+import { increment, decrement, incrementByAmount } from '@/stores/counter';
 
-interface HomeProps { }
+const Home = () => {
+  const count = useAppSelector(state => state.counter.value);
+  const dispatch = useAppDispatch();
 
-const Home: React.FC<HomeProps> = (props) => {
-  const { } = props
   return (
-    <div className={styles.box}>Home</div>
+    <div>
+      Home
+      <p>{count}</p>
+      <button onClick={() => {
+        dispatch(increment())
+      }}>Add</button>
+      <button onClick={() => {
+        dispatch(decrement())
+      }}>Sub</button>
+      <button onClick={() => {
+        dispatch(incrementByAmount(10))
+      }}>Increment</button>
+    </div>
   );
 };
 export default Home

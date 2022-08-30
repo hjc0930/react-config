@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import count from './count';
+import counter from './counter';
 import posts from './posts';
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    count,
+    counter,
     posts
   }
-})
+});
+
+export default store;

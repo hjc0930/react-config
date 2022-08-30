@@ -6,7 +6,10 @@ import { Provider } from 'react-redux'
 
 store.dispatch(fetchPosts())
 
-createRoot(document.getElementById('root')!).render(
+const root = document.getElementById('root')!;
+const app = createRoot(root);
+
+app.render(
   <Provider store={store}>
     <App />
   </Provider>
