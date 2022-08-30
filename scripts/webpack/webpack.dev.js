@@ -19,7 +19,8 @@ module.exports = merge(base, {
     compress: true,
     client: {
       logging: 'error'
-    }
+    },
+    historyApiFallback: true,
   },
 
   optimization: {
