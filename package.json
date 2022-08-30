@@ -11,11 +11,8 @@
     "commit-msg": "node scripts/verifyCommit.js"
   },
   "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
+    "*.{ts,tsx,js,jsx,less,md,json}": [
       "prettier --write"
-    ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write"
     ]
   },
   "devDependencies": {
