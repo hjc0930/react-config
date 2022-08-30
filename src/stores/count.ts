@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const countSlice = createSlice({
-  name: 'count',
+  name: "count",
   initialState: {
-    value: 0
+    value: 0,
   },
   reducers: {
     add: (state) => {
@@ -13,9 +13,9 @@ const countSlice = createSlice({
       state.value -= 1;
     },
     set: (state, action) => {
-      state.value = action.payload
-    }
-  }
+      state.value = action.payload;
+    },
+  },
 });
 
 export const { add, sub, set } = countSlice.actions;
