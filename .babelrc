@@ -10,12 +10,6 @@
     ]
   ],
   "plugins": [
-    // [
-    //   "react-refresh/babel",
-    //   {
-    //     "skipEnvCheck": true
-    //   }
-    // ],
     [
       "@babel/plugin-transform-runtime",
       {
@@ -31,7 +25,7 @@
       {
         "libraryName": "antd",
         "libraryDirectory": "es",
-        "style": "css"
+        "style": true
       }
     ]
   ]
