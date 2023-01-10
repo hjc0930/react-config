@@ -31,12 +31,19 @@ module.exports = [
     test: /\.css$/i,
     use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader']
   },
-  {
+   {
     test: /\.less$/i,
     exclude: /\.module\.less$/i,
     use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       'css-loader',
-      'less-loader'
+    {
+      loader: 'less-loader',
+      options: {
+        lessOptions: {
+          javascriptEnabled: true
+        }
+      }
+    }
     ]
   },
   {
@@ -48,7 +55,14 @@ module.exports = [
           localIdentName: '[name]-[local]__[contenthash:6]'
         }
       }
-    }, 'less-loader']
+    }, {
+      loader: 'less-loader',
+      options: {
+        lessOptions: {
+          javascriptEnabled: true
+        }
+      }
+    }]
   },
   {
     test: /\.s(a|c)ss$/i,
