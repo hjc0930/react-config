@@ -1,7 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { ProgressPlugin } = require("webpack")
+const { ProgressPlugin, DefinePlugin } = require("webpack")
 const path = require('path');
+const stringEnv = require('./env');
+
 const { root, isDev, public, dist } = require('./dir');
 
 module.exports = [
@@ -38,5 +40,6 @@ module.exports = [
       }
     ]
   }),
+  new DefinePlugin(stringEnv),
   new ProgressPlugin(),
 ]

@@ -1,25 +1,7 @@
-import React from 'react';
-import { useAppDispatch, useAppSelector } from '@/stores/hooks';
-import { increment, decrement, incrementByAmount } from '@/stores/counter';
+import styles from "./home.module.scss";
 
 const Home = () => {
-  const count = useAppSelector(state => state.counter.value);
-  const dispatch = useAppDispatch();
-
-  return (
-    <div>
-      Home
-      <p>{count}</p>
-      <button onClick={() => {
-        dispatch(increment())
-      }}>Add</button>
-      <button onClick={() => {
-        dispatch(decrement())
-      }}>Sub</button>
-      <button onClick={() => {
-        dispatch(incrementByAmount(10))
-      }}>Increment</button>
-    </div>
-  );
+  return <div className={styles.box}>Home</div>;
 };
-export default Home
+
+export default Home;

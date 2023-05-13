@@ -1,4 +1,6 @@
 .eslintrc.js
+.tsconfig.json
+global.d.ts
 /scripts
 /dist
 /node_modules

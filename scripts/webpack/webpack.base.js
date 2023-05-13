@@ -11,10 +11,6 @@ module.exports = {
     filename: `js/[name]${dir.isDev ? '' : '-[contenthash:8]'}.js`,
     clean: true,
   },
-
-  cache: {
-    type: 'filesystem',
-  },
   watchOptions: {
     ignored: /node_modules|\.babelrc/
   },

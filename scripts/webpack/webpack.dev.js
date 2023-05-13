@@ -12,6 +12,9 @@ module.exports = merge(base, {
   devtool: 'eval-cheap-module-source-map',
   stats: 'errors-only',
 
+  cache: {
+    type: 'filesystem',
+  },
   devServer: {
     host: '0.0.0.0',
     port: PORT,
