@@ -1,15 +1,15 @@
-import { BrowserRouter, useRoutes } from "react-router-dom";
-import Home from "@/pages/Home";
-import About from "@/pages/About";
+import { BrowserRouter, useRoutes } from 'react-router-dom';
+import Home from '@/pages/Home';
+import About from '@/pages/About';
 
 function Router() {
   return useRoutes([
     {
-      path: "",
+      path: '',
       element: <Home />,
     },
     {
-      path: "about",
+      path: 'about',
       element: <About />,
     },
   ]);
