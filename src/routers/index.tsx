@@ -2,7 +2,7 @@ import { BrowserRouter, useRoutes } from "react-router-dom";
 import Home from "@/views/Home";
 import About from "@/views/About";
 
-function Router() {
+const Router = () => {
   return useRoutes([
     {
       path: "",
@@ -13,13 +13,14 @@ function Router() {
       element: <About />,
     },
   ]);
-}
+};
 
-function Routers() {
+const Routers = () => {
   return (
     <BrowserRouter>
       <Router />
     </BrowserRouter>
   );
-}
+};
+
 export default Routers;
