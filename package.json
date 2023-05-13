@@ -13,12 +13,10 @@
   },
   "lint-staged": {
     "**/*.{less,scss,sass}": [
-      "stylelint --fix",
-      "prettier --write ."
+      "stylelint --fix"
     ],
     "**/*.{js?(x),ts?(x)}": [
-      "eslint . --fix",
-      "prettier --write ."
+      "eslint . --fix"
     ]
   },
   "devDependencies": {
