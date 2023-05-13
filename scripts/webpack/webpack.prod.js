@@ -1,17 +1,17 @@
-const { merge } = require('webpack-merge');
-const base = require('./webpack.base');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { merge } = require("webpack-merge");
+const base = require("./webpack.base");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(base, {
-  mode: 'production',
+  mode: "production",
   devtool: false,
 
   stats: {
     assets: true,
-    assetsSort: '!size',
-    modules: false
+    assetsSort: "!size",
+    modules: false,
   },
 
   optimization: {
@@ -21,12 +21,12 @@ module.exports = merge(base, {
       new TerserPlugin({
         parallel: true,
         exclude: /node_modules/,
-        extractComments: false,//不将注释提取到单独的文件中
+        extractComments: false, //不将注释提取到单独的文件中
         terserOptions: {
-          compress: { pure_funcs: ['console.log'] }, // 生产去除console.log
-        }
+          compress: { pure_funcs: ["console.log"] }, // 生产去除console.log
+        },
       }),
-      new CssMinimizerPlugin()
+      new CssMinimizerPlugin(),
     ],
   },
   performance: {
@@ -47,16 +47,16 @@ module.exports = merge(base, {
       {
         test: /\.(j|t)sx?$/i,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         options: {
           cacheDirectory: true,
         },
       },
-    ]
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name]-[contenthash:8].css',
+      filename: "css/[name]-[contenthash:8].css",
     }),
-  ]
-})
+  ],
+});

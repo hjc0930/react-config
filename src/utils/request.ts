@@ -13,7 +13,7 @@ request.interceptors.request.use(
   },
   (err) => {
     console.error(err);
-  },
+  }
 );
 
 // 响应拦截器
@@ -28,7 +28,7 @@ request.interceptors.response.use(
     // 对响应错误做点什么
     console.error(err);
     throw err;
-  },
+  }
 );
 
 export { request };

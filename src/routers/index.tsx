@@ -1,6 +1,6 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import Home from "@/pages/Home";
-import About from "@/pages/About";
+import Home from "@/views/Home";
+import About from "@/views/About";
 
 function Router() {
   return useRoutes([

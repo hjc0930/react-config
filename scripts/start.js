@@ -1,8 +1,8 @@
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = "development";
 
-const webpack = require('webpack');
-const WebpackServer = require('webpack-dev-server');
-const webpackDevConfig = require('./webpack/webpack.dev');
+const webpack = require("webpack");
+const WebpackServer = require("webpack-dev-server");
+const webpackDevConfig = require("./webpack/webpack.dev");
 
 // webpack compiler
 const compiler = webpack(webpackDevConfig);
@@ -11,4 +11,4 @@ const server = new WebpackServer(webpackDevConfig.devServer, compiler);
 
 (async () => {
   await server.start();
-})()
+})();
