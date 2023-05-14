@@ -7,6 +7,7 @@ const webpackProdConfig = require("./webpack/webpack.prod");
 const compiler = webpack(webpackProdConfig);
 
 console.log("Build Start...");
+const start = Date.now();
 compiler.run(() => {
-  console.log("Build Success");
+  console.log(`Compiled successfully in ${Date.now() - start}ms`);
 });

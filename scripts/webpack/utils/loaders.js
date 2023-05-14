@@ -3,13 +3,41 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = [
   {
-    test: /\.(j|t)sx?$/i,
+    test: /\.tsx$/i,
     exclude: /node_modules/,
     loader: "esbuild-loader",
     options: {
       loader: "tsx",
       target: "es2015",
       jsx: "automatic",
+    },
+  },
+  {
+    test: /\.jsx$/i,
+    exclude: /node_modules/,
+    loader: "esbuild-loader",
+    options: {
+      loader: "jsx",
+      target: "es2015",
+      jsx: "automatic",
+    },
+  },
+  {
+    test: /\.ts$/i,
+    exclude: /node_modules/,
+    loader: "esbuild-loader",
+    options: {
+      loader: "ts",
+      target: "es2015",
+    },
+  },
+  {
+    test: /\.js$/i,
+    exclude: /node_modules/,
+    loader: "esbuild-loader",
+    options: {
+      loader: "js",
+      target: "es2015",
     },
   },
   {
