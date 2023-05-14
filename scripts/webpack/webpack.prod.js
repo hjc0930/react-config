@@ -1,8 +1,7 @@
 const { merge } = require("webpack-merge");
 const base = require("./webpack.base");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+const { EsbuildPlugin } = require("esbuild-loader");
 
 module.exports = merge(base, {
   mode: "production",
@@ -18,15 +17,16 @@ module.exports = merge(base, {
     minimize: true,
     usedExports: true,
     minimizer: [
-      new TerserPlugin({
-        parallel: true,
-        exclude: /node_modules/,
-        extractComments: false, //不将注释提取到单独的文件中
-        terserOptions: {
-          compress: { pure_funcs: ["console.log"] }, // 生产去除console.log
-        },
+      new EsbuildPlugin({
+        target: "es2015",
+        css: true, // 缩小CSS
+        minify: true, // 缩小JS
+        minifyWhitespace: true, // 去掉空格
+        minifyIdentifiers: true, // 缩短标识符
+        minifySyntax: true, // 缩短语法
+        legalComments: "none", // 去掉注释
+        drop: ["console", "debugger"], // 去除console和debugger
       }),
-      new CssMinimizerPlugin(),
     ],
   },
   performance: {
@@ -40,19 +40,6 @@ module.exports = merge(base, {
     assetFilter: function (assetFilename) {
       return assetFilename.endsWith(".js");
     },
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.(j|t)sx?$/i,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-        options: {
-          cacheDirectory: true,
-        },
-      },
-    ],
   },
   plugins: [
     new MiniCssExtractPlugin({

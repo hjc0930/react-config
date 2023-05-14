@@ -3,6 +3,16 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = [
   {
+    test: /\.(j|t)sx?$/i,
+    exclude: /node_modules/,
+    loader: "esbuild-loader",
+    options: {
+      loader: "tsx",
+      target: "es2015",
+      jsx: "automatic",
+    },
+  },
+  {
     test: /\.(png|jpe?g|gif|svg)$/i,
     type: "asset",
     generator: {
