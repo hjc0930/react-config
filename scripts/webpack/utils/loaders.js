@@ -75,6 +75,7 @@ module.exports = [
     use: [
       isDev ? "style-loader" : MiniCssExtractPlugin.loader,
       "css-loader",
+      "resolve-url-loader",
       {
         loader: "less-loader",
         options: {
@@ -97,6 +98,7 @@ module.exports = [
           },
         },
       },
+      "resolve-url-loader",
       {
         loader: "less-loader",
         options: {
@@ -113,6 +115,7 @@ module.exports = [
     use: [
       isDev ? "style-loader" : MiniCssExtractPlugin.loader,
       "css-loader",
+      "resolve-url-loader",
       "sass-loader",
     ],
   },
@@ -128,6 +131,7 @@ module.exports = [
           },
         },
       },
+      "resolve-url-loader",
       "sass-loader",
     ],
   },
