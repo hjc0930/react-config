@@ -1,5 +1,5 @@
-const { merge } = require("webpack-merge");
 const base = require("./webpack.base");
+const { merge } = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { EsbuildPlugin } = require("esbuild-loader");
 
@@ -12,7 +12,18 @@ module.exports = merge(base, {
     assetsSort: "!size",
     modules: false,
   },
-
+  module: {
+    rules: [
+      {
+        test: /\.(j|t)sx?$/i,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          cacheDirectory: true,
+        },
+      },
+    ],
+  },
   optimization: {
     minimize: true,
     usedExports: true,

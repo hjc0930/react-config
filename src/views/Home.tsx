@@ -13,6 +13,8 @@ const Home: React.FC = () => {
 
   return (
     <div>
+      <h2>1231232</h2>
+      <h1>123123</h1>
       <h1>{posts.count}</h1>
       <ul>
         {users.userInfo.map((item) => (

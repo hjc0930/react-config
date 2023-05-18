@@ -6,8 +6,14 @@ const webpackProdConfig = require("./webpack/webpack.prod");
 // webpack compiler
 const compiler = webpack(webpackProdConfig);
 
-console.log("Build Start...");
-const start = Date.now();
-compiler.run(() => {
-  console.log(`Compiled successfully in ${Date.now() - start}ms`);
+compiler.run((err, stats) => {
+  if (err) {
+    console.error(err.stack || err);
+    if (err.details) {
+      console.error(err.details);
+    }
+    return;
+  }
+
+  // const info = stats.toJson();
 });

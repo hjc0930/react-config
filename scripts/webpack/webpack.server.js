@@ -1,3 +1,5 @@
+const { mfsu } = require("./utils")
+
 module.exports = {
   host: process.env.HOST || "0.0.0.0",
   port: process.env.PORT || 8100,
@@ -7,4 +9,10 @@ module.exports = {
     logging: "error",
   },
   historyApiFallback: true,
+  setupMiddlewares(middlewares) {
+    middlewares.unshift(
+      ...mfsu.getMiddlewares()
+    )
+    return middlewares
+  },
 };

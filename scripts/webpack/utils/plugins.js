@@ -43,5 +43,5 @@ module.exports = [
     ],
   }),
   new DefinePlugin(stringEnv),
-  new ProgressPlugin(),
+  // new ProgressPlugin(),
 ];
