@@ -4,7 +4,7 @@
   "scripts": {
     "start": "cross-env dotenv -e .env node ./scripts/start.js",
     "start:dev": "cross-env dotenv -e .env.development node ./scripts/start.js",
-    "build": "cross-env dotenv -e .env node ./scripts/build.js",
+    "build": "webpack --config ./scripts/webpack/webpack.prod.js",
     "build:test": "cross-env dotenv -e .env.test node ./scripts/build.js",
     "build:pre": "cross-env dotenv -e .env.pre node ./scripts/build.js",
     "build:prod": "cross-env dotenv -e .env.production node ./scripts/build.js",
@@ -52,6 +52,7 @@
     "ip": "^1.1.8",
     "lint-staged": "^13.0.3",
     "mini-css-extract-plugin": "^2.6.1",
+    "postcss-loader": "^7.3.2",
     "prettier": "^2.7.1",
     "react-refresh": "^0.14.0",
     "sass": "^1.62.1",
