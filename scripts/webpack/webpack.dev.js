@@ -5,7 +5,7 @@ const { merge } = require("webpack-merge");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const ReactRefreshPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const { esbuildLoader } = require('@umijs/mfsu');
-const { utils, mfsu } = require("./utils");
+const { utils, mfsu, dir } = require("./utils");
 
 
 module.exports = merge(base, {
@@ -23,7 +23,7 @@ module.exports = merge(base, {
   },
   module: {
     rules: [
-      {
+      dir.isDev && {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
         use: {

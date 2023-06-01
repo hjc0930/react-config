@@ -1,4 +1,4 @@
-const { mfsu } = require("./utils")
+const { mfsu, dir } = require("./utils")
 
 module.exports = {
   host: process.env.HOST || "0.0.0.0",
@@ -10,9 +10,11 @@ module.exports = {
   },
   historyApiFallback: true,
   setupMiddlewares(middlewares) {
-    middlewares.unshift(
-      ...mfsu.getMiddlewares()
-    )
-    return middlewares
+    if (dir.isDev) {
+      middlewares.unshift(
+        ...mfsu.getMiddlewares()
+      )
+      return middlewares
+    }
   },
 };
