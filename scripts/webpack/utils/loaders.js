@@ -10,7 +10,7 @@ module.exports = [
     },
     parser: {
       dataUrlCondition: {
-        maxSize: 50 * 1024, //超过50kb不转 base64
+        maxSize: 20 * 1024, //超过50kb不转 base64
       },
     },
   },
@@ -23,13 +23,17 @@ module.exports = [
     },
     parser: {
       dataUrlCondition: {
-        maxSize: 100 * 1024, // 超过100kb不转 base64
+        maxSize: 30 * 1024, // 超过100kb不转 base64
       },
     },
   },
   {
     test: /\.css$/i,
-    use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader"],
+    use: [
+      isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+      "css-loader",
+      "postcss-loader",
+    ],
   },
   {
     test: /\.less$/i,
@@ -37,6 +41,7 @@ module.exports = [
     use: [
       isDev ? "style-loader" : MiniCssExtractPlugin.loader,
       "css-loader",
+      "postcss-loader",
       {
         loader: "less-loader",
         options: {
@@ -55,10 +60,11 @@ module.exports = [
         loader: "css-loader",
         options: {
           modules: {
-            localIdentName: "[name]-[local]__[contenthash:6]",
+            localIdentName: "[local]__[contenthash:6]",
           },
         },
       },
+      "postcss-loader",
       {
         loader: "less-loader",
         options: {
@@ -75,6 +81,7 @@ module.exports = [
     use: [
       isDev ? "style-loader" : MiniCssExtractPlugin.loader,
       "css-loader",
+      "postcss-loader",
       "sass-loader",
     ],
   },
@@ -86,10 +93,11 @@ module.exports = [
         loader: "css-loader",
         options: {
           modules: {
-            localIdentName: "[name]-[local]__[contenthash:6]",
+            localIdentName: "[local]__[contenthash:6]",
           },
         },
       },
+      "postcss-loader",
       "sass-loader",
     ],
   },
