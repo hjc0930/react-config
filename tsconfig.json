@@ -8,6 +8,7 @@
     "jsx": "react-jsx", // 在 .tsx 文件里支持 JSX
     "isolatedModules": true,
     "strict": true, // 启用所有严格类型检查选项
+    "noImplicitAny": false,
     // 模块解析选项
     "moduleResolution": "node", // 指定模块解析策略
     "esModuleInterop": true, // 支持 CommonJS 和 ES 模块之间的互操作性
@@ -15,7 +16,6 @@
     "baseUrl": "./", // 根路径
     "paths": {
       // 路径映射，与 baseUrl 关联
-      "*": ["node_modules/*", "src/types/*"],
       "@/*": ["src/*"]
     },
     // 实验性选项
@@ -28,5 +28,11 @@
     "noEmit": true // 只想使用tsc的类型检查作为函数时（当其他工具（例如Babel实际编译）时）使用它
   },
   "include": ["src/**/*", "global.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS" // 指定生成什么模块代码。
+    },
+    "transpileOnly": true // 只编译，报警告或者错误一样运行
+  }
 }
