@@ -5,6 +5,7 @@ import ESLintPlugin from "eslint-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path from "node:path";
 import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 import ComponentsPlugin from "unplugin-vue-components/webpack";
 import { Configuration, DefinePlugin } from "webpack";
@@ -26,7 +27,7 @@ import { resolveApp } from "../utils/path";
 import devConfig from "./webpack.dev";
 import prodConfig from "./webpack.prod";
 
-console.log(chalkINFO(`读取: ${__filename.slice(__dirname.length + 1)}`));
+console.log(chalkINFO(`read: ${__filename.slice(__dirname.length + 1)}`));
 
 const sassRules = (isProduction: boolean, module?: boolean) => {
   return [
@@ -108,11 +109,7 @@ const cssRules = (isProduction: boolean, module?: boolean) => {
 
 const commonConfig = (isProduction) => {
   const result: Configuration = {
-    entry: {
-      main: {
-        import: "./src/index.tsx",
-      },
-    },
+    entry: path.resolve(process.cwd(), "./src/index.tsx"),
     output: {
       clean: true, // 在生成文件之前清空 output 目录。替代clean-webpack-plugin
       filename: "js/[name]-[contenthash:6]-bundle.js", // 入口文件打包生成后的文件的文件名
@@ -411,7 +408,7 @@ export default (env) => {
         const mergeConfig = merge(commonConfig(isProduction), config);
         console.log(
           chalkWARN(
-            `根据当前环境，合并配置文件，当前是: ${process.env.NODE_ENV!}环境`
+            `Merge configuration files,current environment: ${process.env.NODE_ENV}`
           )
         );
         resolve(mergeConfig);

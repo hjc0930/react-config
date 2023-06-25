@@ -6,7 +6,7 @@ import { outputStaticUrl } from "../constant";
 import { chalkINFO } from "../utils/chalkTip";
 import { resolveApp } from "../utils/path";
 
-console.log(chalkINFO(`读取: ${__filename.slice(__dirname.length + 1)}`));
+console.log(chalkINFO(`read: ${__filename.slice(__dirname.length + 1)}`));
 
 export default new Promise((resolve) => {
   // 默认端口300，如果被占用了，会自动递增+1

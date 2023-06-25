@@ -9,7 +9,7 @@ import WebpackBar from "webpackbar";
 import { gzipEnable } from "../constant";
 import { chalkINFO } from "../utils/chalkTip";
 
-console.log(chalkINFO(`读取: ${__filename.slice(__dirname.length + 1)}`));
+console.log(chalkINFO(`read: ${__filename.slice(__dirname.length + 1)}`));
 
 export default new Promise((resolve) => {
   const prodConfig: Configuration = {
