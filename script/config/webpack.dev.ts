@@ -9,7 +9,6 @@ import { resolveApp } from "../utils/path";
 console.log(chalkINFO(`read: ${__filename.slice(__dirname.length + 1)}`));
 
 export default new Promise((resolve) => {
-  // 默认端口300，如果被占用了，会自动递增+1
   const defaultPort = 3000;
   portfinder
     .getPortPromise({
@@ -19,12 +18,9 @@ export default new Promise((resolve) => {
     .then((port) => {
       const devConfig: Configuration = {
         target: "web",
-        // https://github.com/webpack/webpack/blob/main/lib/config/defaults.js
         mode: "development",
         stats: "none",
-        // https://webpack.docschina.org/configuration/devtool/
-        devtool: "cheap-module-source-map", // eval，具有最高性能的开发构建的推荐选择。
-        // 这个infrastructureLogging设置参考了vuecli5，如果不设置，webpack-dev-server会打印一些信息
+        devtool: "cheap-module-source-map",
         infrastructureLogging: {
           level: "none",
         },
@@ -64,19 +60,6 @@ export default new Promise((resolve) => {
           new TerminalPrintPlugin(),
         ].filter(Boolean),
         optimization: {
-          /**
-           * 官网解释：告知 webpack 去辨识 package.json 中的 副作用 标记或规则，
-           * 以跳过那些当导出不被使用且被标记不包含副作用的模块。'flag' 值在非生产环境默认使用。
-           * 个人理解：flag，即如果package.json有标识就会用它的标识，
-           * 但不意味着你的项目的package.json就得设置sideEffects，你的项目不设置，它也会对你
-           * 项目里面用到的node_modules里面的包的package.json做检查。
-           * 设置true的话，还会分析源代码的副作用?但测试结果貌似不会，可能我理解有问题，已经
-           * 提了issue:https://github.com/webpack/webpack/issues/16314
-           * 设置false的话，即不会检查package.json的sideEffects字段，把所有模块都当成有副作
-           * 用的（即使某个包的package.json设置sideEffects为false），因为sideEffects并不
-           * 是npm的package.json合法字段，只是写给webpack识别用的而已
-           */
-          // sideEffects: true,
           sideEffects: "flag",
         },
       };

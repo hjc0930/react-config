@@ -12,19 +12,13 @@ export const windicssEnable = false; // 是否开启windicss
 export const htmlWebpackPluginTitle = "自然博客后台"; // htmlWebpackPlugin的标题
 
 export const outputStaticUrl = (isProduction: boolean) => {
-  // console.table({ isProduction, APP_NAME, APP_ENV, NODE_ENV, PUBLIC_PATH });
-  // console.log(process.env);
-
   if (APP_ENV === undefined && APP_NAME === undefined) {
     return "/";
   }
   if (isProduction) {
-    // 如果是jenkins里面构建，会执行build.sh，一定会有APP_NAME，APP_ENV可能是：'null'|'beta'|'preview'|'prod'
     if (APP_ENV === "null") {
-      // eslint-disable-next-line
       return `/${APP_NAME}/`;
     } else {
-      // eslint-disable-next-line
       return `/${APP_NAME}/${APP_ENV}/`;
     }
   } else {
