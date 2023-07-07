@@ -6,6 +6,7 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "node:path";
+import process from "node:process";
 import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 import ComponentsPlugin from "unplugin-vue-components/webpack";
 import { Configuration, DefinePlugin } from "webpack";
@@ -319,22 +320,22 @@ const commonConfig = (isProduction) => {
       }),
       // eslint
       eslintEnable &&
-        new ESLintPlugin({
-          extensions: ["js", "jsx", "ts", "tsx", "vue"],
-          emitError: false, // 发现的错误将始终发出，禁用设置为false.
-          emitWarning: false, // 找到的警告将始终发出，禁用设置为false.
-          failOnError: false, // 如果有任何错误，将导致模块构建失败，禁用设置为false
-          failOnWarning: false, // 如果有任何警告，将导致模块构建失败，禁用设置为false
-          cache: true,
-          cacheLocation: resolveApp("./node_modules/.cache/.eslintcache"),
-        }),
+      new ESLintPlugin({
+        extensions: ["js", "jsx", "ts", "tsx", "vue"],
+        emitError: false, // 发现的错误将始终发出，禁用设置为false.
+        emitWarning: false, // 找到的警告将始终发出，禁用设置为false.
+        failOnError: false, // 如果有任何错误，将导致模块构建失败，禁用设置为false
+        failOnWarning: false, // 如果有任何警告，将导致模块构建失败，禁用设置为false
+        cache: true,
+        cacheLocation: resolveApp("./node_modules/.cache/.eslintcache"),
+      }),
       // bundle分析
       analyzerEnable &&
-        new BundleAnalyzerPlugin({
-          analyzerMode: "server",
-          generateStatsFile: true,
-          statsOptions: { source: false },
-        }), // configuration.plugins should be one of these object { apply, … } | function
+      new BundleAnalyzerPlugin({
+        analyzerMode: "server",
+        generateStatsFile: true,
+        statsOptions: { source: false },
+      }), // configuration.plugins should be one of these object { apply, … } | function
 
       // windicss
       windicssEnable && new WindiCSSWebpackPlugin(),
@@ -398,7 +399,7 @@ const commonConfig = (isProduction) => {
 export default (env) => {
   return new Promise((resolve) => {
     const isProduction = env.production;
-    process.env.NODE_ENV = isProduction ? "production" : "development";
+    // process.env.NODE_ENV = isProduction ? "production" : "development";
     const configPromise = Promise.resolve(
       isProduction ? prodConfig : devConfig
     );
@@ -408,7 +409,7 @@ export default (env) => {
         const mergeConfig = merge(commonConfig(isProduction), config);
         console.log(
           chalkWARN(
-            `Merge configuration files,current environment: ${process.env.NODE_ENV}`
+            `Merge configuration files,current environment: ${isProduction ? "production" : "development"}`
           )
         );
         resolve(mergeConfig);
