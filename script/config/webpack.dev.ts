@@ -2,6 +2,7 @@ import portfinder from "portfinder";
 import { Configuration } from "webpack";
 
 import TerminalPrintPlugin from "../TerminalPrintPlugin";
+import WatchFilePlugin from "../WatchFilePlugin";
 import { outputStaticUrl } from "../constant";
 import { chalkINFO } from "../utils/chalkTip";
 import { resolveApp } from "../utils/path";
@@ -62,6 +63,7 @@ export default new Promise((resolve) => {
         },
         plugins: [
           new TerminalPrintPlugin(),
+          new WatchFilePlugin()
         ].filter(Boolean),
         optimization: {
           /**
