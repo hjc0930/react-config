@@ -61,10 +61,9 @@ export default new Promise((resolve) => {
             directory: resolveApp("./public/"),
           },
         },
-        plugins: [
-          new TerminalPrintPlugin(),
-          new WatchFilePlugin()
-        ].filter(Boolean),
+        plugins: [new TerminalPrintPlugin(), new WatchFilePlugin()].filter(
+          Boolean
+        ),
         optimization: {
           /**
            * 官网解释：告知 webpack 去辨识 package.json 中的 副作用 标记或规则，

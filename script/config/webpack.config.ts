@@ -34,17 +34,17 @@ const sassRules = (isProduction: boolean, module?: boolean) => {
   return [
     isProduction
       ? {
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-          publicPath: outputStaticUrl(isProduction),
-        },
-      }
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: outputStaticUrl(isProduction),
+          },
+        }
       : {
-        loader: "style-loader",
-        options: {
-          sourceMap: false,
+          loader: "style-loader",
+          options: {
+            sourceMap: false,
+          },
         },
-      },
     {
       loader: "css-loader", // 默认会自动找postcss.config.js
       options: {
@@ -52,8 +52,8 @@ const sassRules = (isProduction: boolean, module?: boolean) => {
         sourceMap: false,
         modules: module
           ? {
-            localIdentName: "[name]_[local]_[hash:base64:5]",
-          }
+              localIdentName: "[name]_[local]_[hash:base64:5]",
+            }
           : undefined,
       },
     },
@@ -76,17 +76,17 @@ const cssRules = (isProduction: boolean, module?: boolean) => {
   return [
     isProduction
       ? {
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-          publicPath: outputStaticUrl(isProduction),
-        },
-      }
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: outputStaticUrl(isProduction),
+          },
+        }
       : {
-        loader: "style-loader",
-        options: {
-          sourceMap: false,
+          loader: "style-loader",
+          options: {
+            sourceMap: false,
+          },
         },
-      },
     {
       loader: "css-loader", // 默认会自动找postcss.config.js
       options: {
@@ -94,8 +94,8 @@ const cssRules = (isProduction: boolean, module?: boolean) => {
         sourceMap: false,
         modules: module
           ? {
-            localIdentName: "[name]_[local]_[hash:base64:5]",
-          }
+              localIdentName: "[name]_[local]_[hash:base64:5]",
+            }
           : undefined,
       },
     },
@@ -148,7 +148,6 @@ const commonConfig = (isProduction) => {
       buildDependencies: {
         // 建议cache.buildDependencies.config: [__filename]在您的 webpack 配置中设置以获取最新配置和所有依赖项。
         config: [
-          resolveApp("./script/config/webpack.common.ts"),
           resolveApp("./script/config/webpack.dev.ts"),
           resolveApp("./script/config/webpack.prod.ts"),
           // resolveApp(".browserslistrc"), // 防止修改了.browserslistrc文件后，但没修改webpack配置文件，webpack不读取最新更新后的.browserslistrc
@@ -320,22 +319,22 @@ const commonConfig = (isProduction) => {
       }),
       // eslint
       eslintEnable &&
-      new ESLintPlugin({
-        extensions: ["js", "jsx", "ts", "tsx", "vue"],
-        emitError: false, // 发现的错误将始终发出，禁用设置为false.
-        emitWarning: false, // 找到的警告将始终发出，禁用设置为false.
-        failOnError: false, // 如果有任何错误，将导致模块构建失败，禁用设置为false
-        failOnWarning: false, // 如果有任何警告，将导致模块构建失败，禁用设置为false
-        cache: true,
-        cacheLocation: resolveApp("./node_modules/.cache/.eslintcache"),
-      }),
+        new ESLintPlugin({
+          extensions: ["js", "jsx", "ts", "tsx", "vue"],
+          emitError: false, // 发现的错误将始终发出，禁用设置为false.
+          emitWarning: false, // 找到的警告将始终发出，禁用设置为false.
+          failOnError: false, // 如果有任何错误，将导致模块构建失败，禁用设置为false
+          failOnWarning: false, // 如果有任何警告，将导致模块构建失败，禁用设置为false
+          cache: true,
+          cacheLocation: resolveApp("./node_modules/.cache/.eslintcache"),
+        }),
       // bundle分析
       analyzerEnable &&
-      new BundleAnalyzerPlugin({
-        analyzerMode: "server",
-        generateStatsFile: true,
-        statsOptions: { source: false },
-      }), // configuration.plugins should be one of these object { apply, … } | function
+        new BundleAnalyzerPlugin({
+          analyzerMode: "server",
+          generateStatsFile: true,
+          statsOptions: { source: false },
+        }), // configuration.plugins should be one of these object { apply, … } | function
 
       // windicss
       windicssEnable && new WindiCSSWebpackPlugin(),
@@ -347,19 +346,19 @@ const commonConfig = (isProduction) => {
         hash: true,
         minify: isProduction
           ? {
-            collapseWhitespace: true, // 折叠空白
-            keepClosingSlash: true, // 在单标签上保留末尾斜杠
-            removeComments: true, // 移除注释
-            removeRedundantAttributes: true, // 移除多余的属性（如：input的type默认就是text，如果写了type="text"，就移除它，因为不写它默认也是type="text"）
-            removeScriptTypeAttributes: true, // 删除script标签中type="text/javascript"
-            removeStyleLinkTypeAttributes: true, // 删除style和link标签中type="text/css"
-            useShortDoctype: true, // 使用html5的<!doctype html>替换掉之前的html老版本声明方式<!doctype>
-            // 上面的都是production模式下默认值。
-            removeEmptyAttributes: true, // 移除一些空属性，如空的id,classs,style等等，但不是空的就全删，比如<img alt />中的alt不会删。http://perfectionkills.com/experimenting-with-html-minifier/#remove_empty_or_blank_attributes
+              collapseWhitespace: true, // 折叠空白
+              keepClosingSlash: true, // 在单标签上保留末尾斜杠
+              removeComments: true, // 移除注释
+              removeRedundantAttributes: true, // 移除多余的属性（如：input的type默认就是text，如果写了type="text"，就移除它，因为不写它默认也是type="text"）
+              removeScriptTypeAttributes: true, // 删除script标签中type="text/javascript"
+              removeStyleLinkTypeAttributes: true, // 删除style和link标签中type="text/css"
+              useShortDoctype: true, // 使用html5的<!doctype html>替换掉之前的html老版本声明方式<!doctype>
+              // 上面的都是production模式下默认值。
+              removeEmptyAttributes: true, // 移除一些空属性，如空的id,classs,style等等，但不是空的就全删，比如<img alt />中的alt不会删。http://perfectionkills.com/experimenting-with-html-minifier/#remove_empty_or_blank_attributes
 
-            minifyCSS: true, // 使用clean-css插件删除 CSS 中一些无用的空格、注释等。
-            minifyJS: true, // 使用Terser插件优化
-          }
+              minifyCSS: true, // 使用clean-css插件删除 CSS 中一些无用的空格、注释等。
+              minifyJS: true, // 使用Terser插件优化
+            }
           : false,
         chunks: ["main"], // 要仅包含某些块，您可以限制正在使用的块
       }),
@@ -409,7 +408,9 @@ export default (env) => {
         const mergeConfig = merge(commonConfig(isProduction), config);
         console.log(
           chalkWARN(
-            `Merge configuration files,current environment: ${isProduction ? "production" : "development"}`
+            `Merge configuration files,current environment: ${
+              isProduction ? "production" : "development"
+            }`
           )
         );
         resolve(mergeConfig);
