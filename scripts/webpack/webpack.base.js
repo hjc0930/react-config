@@ -1,15 +1,19 @@
 const path = require("path");
 const { dir, plugins, loaders } = require("./utils");
-
-module.exports = {
+/**
+ * @type {import("webpack").Configuration}
+ */
+const config = {
   entry: {
     index: path.resolve(dir.src, "./index"),
   },
-
   output: {
     path: dir.dist,
     filename: `js/[name]${dir.isDev ? "" : "-[contenthash:8]"}.js`,
     clean: true,
+  },
+  infrastructureLogging: {
+    level: "none",
   },
   watchOptions: {
     ignored: /node_modules|\.babelrc/,
@@ -33,3 +37,5 @@ module.exports = {
 
   plugins,
 };
+
+module.exports = config;

@@ -1,13 +1,14 @@
-import Routers from "./routers";
-import { RootStore, StoreContext } from "./stores";
-import { observer } from "mobx-react-lite";
+import "antd/dist/reset.css";
 
 const App = () => {
+  console.log(import.meta.glob());
+
   return (
-    <StoreContext.Provider value={{ ...RootStore }}>
-      <Routers />
-    </StoreContext.Provider>
+    <div>123123</div>
+    // <StoreContext.Provider value={{ ...RootStore }}>
+    //   <Routers />
+    // </StoreContext.Provider>
   );
 };
 
-export default observer(App);
+export default App;

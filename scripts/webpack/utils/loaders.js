@@ -1,7 +1,10 @@
 const { isDev } = require("./dir");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = [
+/**
+ * @type {import("webpack").ModuleOptions["rules"]}
+ */
+const config = [
   {
     test: /\.(png|jpe?g|gif|svg)$/i,
     type: "asset",
@@ -34,6 +37,7 @@ module.exports = [
       "css-loader",
       "postcss-loader",
     ],
+    sideEffects: true,
   },
   {
     test: /\.less$/i,
@@ -51,6 +55,7 @@ module.exports = [
         },
       },
     ],
+    sideEffects: true,
   },
   {
     test: /\.module\.less$/i,
@@ -74,6 +79,7 @@ module.exports = [
         },
       },
     ],
+    sideEffects: true,
   },
   {
     test: /\.s(a|c)ss$/i,
@@ -84,6 +90,7 @@ module.exports = [
       "postcss-loader",
       "sass-loader",
     ],
+    sideEffects: true,
   },
   {
     test: /\.module\.s(a|c)ss$/i,
@@ -100,5 +107,8 @@ module.exports = [
       "postcss-loader",
       "sass-loader",
     ],
+    sideEffects: true,
   },
 ];
+
+module.exports = config;

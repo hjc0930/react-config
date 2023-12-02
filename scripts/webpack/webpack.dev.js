@@ -3,9 +3,7 @@ const base = require("./webpack.base");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const ReactRefreshPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const ip = require("ip");
-const { utils } = require("./utils");
-
-const PORT = 5100;
+const { utils, dir } = require("./utils");
 
 module.exports = merge(base, {
   mode: "development",
@@ -15,17 +13,6 @@ module.exports = merge(base, {
   cache: {
     type: "filesystem",
   },
-  devServer: {
-    host: "0.0.0.0",
-    port: PORT,
-    hot: true,
-    compress: true,
-    client: {
-      logging: "error",
-    },
-    historyApiFallback: true,
-  },
-
   optimization: {
     removeAvailableModules: false,
     removeEmptyChunks: false,
@@ -52,10 +39,10 @@ module.exports = merge(base, {
       compilationSuccessInfo: {
         messages: [
           `\r App running at:\n - Local：  ${utils.printColor(
-            `http://localhost:${PORT}`,
+            `http://localhost:${dir.port}`,
             "blue"
           )}\n - Network: ${utils.printColor(
-            `http://${ip.address()}:${PORT}`,
+            `http://${ip.address()}:${dir.port}`,
             "blue"
           )}`,
         ],

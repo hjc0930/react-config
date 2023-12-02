@@ -4,8 +4,8 @@ const process = require("process");
 const root = process.cwd();
 
 module.exports = {
+  port: 3000,
   isDev: process.env.NODE_ENV === "development",
-
   root,
   src: path.resolve(root, "./src"),
   dist: path.resolve(root, "./dist"),

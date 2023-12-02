@@ -9,6 +9,15 @@ declare namespace NodeJS {
   }
 }
 
+interface ImportMetaEnv {
+  readonly REACT_APP_PORT: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+  readonly glob: Function;
+}
+
 declare module "*.avif" {
   const src: string;
   export default src;
